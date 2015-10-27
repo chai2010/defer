@@ -55,6 +55,13 @@ int main() {
 }
 ```
 
+Build and run:
+
+```
+g++ -std=c++11 hello.cc
+./hello
+```
+
 Output:
 
 ```
@@ -82,7 +89,6 @@ lambda 2
 lambda 1
 done
 ```
-
 
 BUGS
 ====
