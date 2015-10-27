@@ -3,8 +3,7 @@
 Build and run example:
 
 ```
-make
-./hello
+make && ./hello
 ```
 
 ## Simple
