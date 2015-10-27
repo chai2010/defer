@@ -86,7 +86,7 @@ struct __DeferredAction {
 	std::function<void()> func_;
 
 	template<typename T>
-	__DeferredAction(T&& p): func_(std::bind(std::forward<T>(p))) {}
+	__DeferredAction(T&& p): func_(std::function<void()>(p)) {}
 
 	__DeferredAction();
 	__DeferredAction(__DeferredAction const&);
