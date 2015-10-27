@@ -41,29 +41,31 @@
 //			printf("open \"defer.h\" failed!\n");
 //			return -1;
 //		}
-//		defer [&](){ printf("fclose(\"defer.h\")\n"); fclose(fp); };
+//		defer [&]{ printf("fclose(\"defer.h\")\n"); fclose(fp); };
 //
 //		char* buf = new char[1024];
-//		defer [&](){ printf("delete buf\n"); delete[] buf; };
+//		defer [&]{ printf("delete buf\n"); delete[] buf; };
 //
-//		defer [](){ printf("defer a: %d\n", __LINE__); };
-//		defer [](){ printf("defer a: %d\n", __LINE__); };
-//		defer [](){ printf("defer a: %d\n", __LINE__); };
+//		defer []{ printf("defer a: %d\n", __LINE__); };
+//		defer []{ printf("defer a: %d\n", __LINE__); };
+//		defer []{ printf("defer a: %d\n", __LINE__); };
 //
 //		{
-//			defer [](){ printf("local defer a: %d\n", __LINE__); };
-//			defer [](){ printf("local defer a: %d\n", __LINE__); };
-//			defer [](){ printf("local defer a: %d\n", __LINE__); };
+//			defer []{ printf("local defer a: %d\n", __LINE__); };
+//			defer []{ printf("local defer a: %d\n", __LINE__); };
+//			defer []{ printf("local defer a: %d\n", __LINE__); };
 //		}
 //
-//		defer [](){
+//		defer []{
 //			printf("defer c:\n");
 //			for(int i = 0; i < 3; ++i) {
-//				defer([&](){ defer([&](){
-//					printf("\ti = %d: begin\n", i);
-//					defer([&](){ printf("\ti = %d\n", i); });
-//					printf("\ti = %d: end\n", i);
-//				});});
+//				defer [&]{
+//					defer [&]{
+//						printf("\ti = %d: begin\n", i);
+//						defer [&]{ printf("\ti = %d\n", i); };
+//						printf("\ti = %d: end\n", i);
+//					};
+//				};
 //			}
 //		};
 //

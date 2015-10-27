@@ -12,7 +12,7 @@ ifeq ($(OS),Windows_NT)
 	EXT:=.exe
 endif
 
-$(TARG)$(EXT):
+$(TARG)$(EXT): hello.cc
 	$(CC) $(CCFLAGS) -o $(TARG)$(EXT) hello.cc
 
 clean:
