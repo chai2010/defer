@@ -1,6 +1,24 @@
 # Go's defer operator for C++
 
-Example:
+Build and run example:
+
+```
+make
+./hello
+```
+
+## Simple
+
+```C++
+#include "defer.h"
+
+auto p = malloc(8<<20);
+defer [&]{ free(p); p = NULL; }
+
+do_some_thing(p);
+```
+
+## Example
 
 ```C++
 #include "defer.h"
