@@ -35,6 +35,7 @@
 //
 //		defer std::bind(&MyStruct::MethodA, MyStruct());
 //		defer std::bind(&MyStruct::MethodB, MyStruct());
+//		defer std::bind(printf, "printf %s %d\n", "hello world", 2015);
 //
 //		FILE* fp = fopen("defer.h", "rt");
 //		if(fp == NULL) {
@@ -46,14 +47,14 @@
 //		char* buf = new char[1024];
 //		defer [&]{ printf("delete buf\n"); delete[] buf; };
 //
-//		defer []{ printf("defer a: %d\n", __LINE__); };
-//		defer []{ printf("defer a: %d\n", __LINE__); };
-//		defer []{ printf("defer a: %d\n", __LINE__); };
+//		defer []{ printf("defer a: %d\n", 1); };
+//		defer []{ printf("defer a: %d\n", 2); };
+//		defer []{ printf("defer a: %d\n", 3); };
 //
 //		{
-//			defer []{ printf("local defer a: %d\n", __LINE__); };
-//			defer []{ printf("local defer a: %d\n", __LINE__); };
-//			defer []{ printf("local defer a: %d\n", __LINE__); };
+//			defer []{ printf("local defer a: %d\n", 1); };
+//			defer []{ printf("local defer a: %d\n", 2); };
+//			defer []{ printf("local defer a: %d\n", 3); };
 //		}
 //
 //		defer []{
@@ -122,4 +123,3 @@ struct __Defer {
 };
 
 #endif  // __RUNTIME_DEFER_H__
-

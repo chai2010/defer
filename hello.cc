@@ -23,6 +23,7 @@ int main() {
 
 	defer std::bind(&MyStruct::MethodA, MyStruct());
 	defer std::bind(&MyStruct::MethodB, MyStruct());
+	defer std::bind(printf, "printf %s %d\n", "hello world", 2015);
 
 	FILE* fp = fopen("defer.h", "rt");
 	if(fp == NULL) {
@@ -34,14 +35,14 @@ int main() {
 	char* buf = new char[1024];
 	defer [&]{ printf("delete buf\n"); delete[] buf; };
 
-	defer []{ printf("defer a: %d\n", __LINE__); };
-	defer []{ printf("defer a: %d\n", __LINE__); };
-	defer []{ printf("defer a: %d\n", __LINE__); };
+	defer []{ printf("defer a: %d\n", 1); };
+	defer []{ printf("defer a: %d\n", 2); };
+	defer []{ printf("defer a: %d\n", 3); };
 
 	{
-		defer []{ printf("local defer a: %d\n", __LINE__); };
-		defer []{ printf("local defer a: %d\n", __LINE__); };
-		defer []{ printf("local defer a: %d\n", __LINE__); };
+		defer []{ printf("local defer a: %d\n", 1); };
+		defer []{ printf("local defer a: %d\n", 2); };
+		defer []{ printf("local defer a: %d\n", 3); };
 	}
 
 	defer []{
@@ -61,9 +62,9 @@ int main() {
 }
 
 // Output:
-// local defer a: 44
-// local defer a: 43
-// local defer a: 42
+// local defer a: 3
+// local defer a: 2
+// local defer a: 1
 // defer c:
 //         i = 0: begin
 //         i = 0: end
@@ -74,11 +75,12 @@ int main() {
 //         i = 2: begin
 //         i = 2: end
 //         i = 2
-// defer a: 39
-// defer a: 38
-// defer a: 37
+// defer a: 3
+// defer a: 2
+// defer a: 1
 // delete buf
 // fclose("defer.h")
+// printf hello world 2015
 // MyStruct.MethodB
 // MyStruct.MethodA
 // lambda 2
