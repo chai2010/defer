@@ -37,7 +37,10 @@
 //		defer std::bind(&MyStruct::MethodB, MyStruct());
 //
 //		FILE* fp = fopen("defer.h", "rt");
-//		if(fp == NULL) return false;
+//		if(fp == NULL) {
+//			printf("open \"defer.h\" failed!\n");
+//			return -1;
+//		}
 //		defer [&](){ printf("fclose(\"defer.h\")\n"); fclose(fp); };
 //
 //		char* buf = new char[1024];
@@ -63,6 +66,8 @@
 //				});});
 //			}
 //		};
+//
+//		return 0;
 //	}
 //
 // Reference:
