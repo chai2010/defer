@@ -67,6 +67,7 @@
 //
 // Reference:
 //
+// http://github.com/chai2010/defer
 // http://golang.org/doc/effective_go.html#defer
 // http://golang.org/ref/spec#Defer_statements
 // http://blog.korfuri.fr/post/go-defer-in-cpp/
