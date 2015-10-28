@@ -12,7 +12,7 @@ make && ./hello
 #include "defer.h"
 
 auto p = malloc(8<<20);
-defer [&]{ free(p); p = NULL; }
+defer [&]{ free(p); p = NULL; };
 
 do_some_thing(p);
 ```
