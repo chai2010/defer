@@ -122,4 +122,4 @@ struct __Defer {
 	}
 };
 
-#endif  // __RUNTIME_DEFER_H__
+#endif  // __DEFER_H__
