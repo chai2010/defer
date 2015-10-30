@@ -13,7 +13,7 @@ ifeq ($(OS),Windows_NT)
 endif
 
 $(TARG)$(EXT): hello.cc
-	$(CC) $(CCFLAGS) -o $(TARG)$(EXT) hello.cc
+	$(CC) $(CCFLAGS) -o $@ $<
 
 clean:
 	-rm $(TARG)$(EXT)
