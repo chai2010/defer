@@ -69,8 +69,8 @@ int main() {
 			defer [&]{
 				defer [&]{
 					printf("\ti = %d: begin\n", i);
-					defer [&]{ printf("\ti = %d\n", i); };
-					printf("\ti = %d: end\n", i);
+					defer [&]{ printf("\ti = %d: end\n", i); };
+					printf("\ti = %d: ...\n", i);
 				};
 			};
 		}
@@ -95,14 +95,14 @@ local defer a: 2
 local defer a: 1
 defer c:
         i = 0: begin
+        i = 0: ...
         i = 0: end
-        i = 0
         i = 1: begin
+        i = 1: ...
         i = 1: end
-        i = 1
         i = 2: begin
+        i = 2: ...
         i = 2: end
-        i = 2
 defer a: 3
 defer a: 2
 defer a: 1

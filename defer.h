@@ -63,8 +63,8 @@
 //				defer [&]{
 //					defer [&]{
 //						printf("\ti = %d: begin\n", i);
-//						defer [&]{ printf("\ti = %d\n", i); };
-//						printf("\ti = %d: end\n", i);
+//						defer [&]{ printf("\ti = %d: end\n", i); };
+//						printf("\ti = %d: ...\n", i);
 //					};
 //				};
 //			}
