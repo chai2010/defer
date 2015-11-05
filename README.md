@@ -23,6 +23,9 @@ do_some_thing(p);
 #include "defer.h"
 
 #include <stdio.h>
+#include <vector>
+#include <thread>
+#include <mutex>
 
 void done() {
 	printf("done\n");
@@ -76,6 +79,23 @@ int main() {
 		}
 	};
 
+	std::mutex mutex;
+	int sum_1_100 = 0; // 1 + 2 + 3 + ... + 100 = 5050
+	defer [&]{ printf("sum_1_100 = %d\n", sum_1_100); };
+
+	std::vector<std::thread> threads;
+	for(int i = 1; i <= 100; ++i) {
+		threads.push_back(std::thread([&](int step){
+			mutex.lock();
+			defer [&]{ mutex.unlock(); };
+
+			sum_1_100 += step;
+		}, i));
+	}
+	for(auto& th : threads) {
+		th.join();
+	}
+
 	return 0;
 }
 ```
@@ -93,6 +113,7 @@ Output:
 local defer a: 3
 local defer a: 2
 local defer a: 1
+sum_1_100 = 5050
 defer c:
         i = 0: begin
         i = 0: ...
